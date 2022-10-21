@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>	
+	<head>
+		<meta charset="UTF-8" />
+		<title>signup</title>
+	</head>
+	<body>
+    {{>navbar}}
+	<section>
+	<!--- registration form -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card mt-4" >
+					<!--- alert -->
+													
+							<!-- icon registration -->
+							<div class="container text-center mb-4">
+							<img class="" style="width: 60px;" src="" src="" alt="" />
+							 <h1 class="text-center mt-2 ">Create New Account</h1>
+							</div>
+						
+						<form  action="/registration" method="post" >
+							<!--name field -->
+							<div class="mb-3">
+							      <input type="text" name="name" class="form-control "  id="name_field" value="" aria-describedby="namehelp" placeholder=" Name" required>
+								 	
+							 </div>
+							 <!--email field -->
+							 <div class="mb-3">
+							    <input type="email" name="email" class="form-control" id="email _ field" aria-describedby="emailHelp" value="" placeholder="Email" required>
+							 </div>
+							 <!--password field -->
+							 <div class="mb-3">
+							    <input type="password" name="password" class="form-control" id="password field" aria-describedby="passwordHelp" placeholder="Password" required>
+							 </div>
+							 <!-- confirm password-->
+							  <div class="mb-3">
+							    <input type="password" name="confirmpassword" class="form-control" id="password field" aria-describedby="passwordHelp" placeholder="confirm Password" required>
+							 </div>
+							 <!--textarea field -->
+							 <div class="mb-3">
+								<textarea placeholder="Description" name="about" rows="5" text="" class="form-control"></textarea>
+							 </div>
+							 <!-- agreement -->
+							 <div class="form-group form-check">
+							 	<input type="checkbox" name="agreement" class="for-check-input" id="agreement" required/>
+							 	<label for="agreement" >Accept terms and conditions</label>
+							 </div>
+							 <!--  submit buttom--> <!--  reset buttom-->
+							 <div class="container text-center pt-2 ">
+							 	<button class="btn btn-success " type="submit">Submit</button>
+							 	<button class="btn btn-danger text-white" type="reset" >Reset</button>
+							 </div>
+							 <!-- alredy account -->
+							 <div class="form-group form-check text-center">
+							 	<label for="agreement" >Already a member? <a href="">Log in</a></label>
+							 </div>
+							 
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+		
+	</body>
+</html>
