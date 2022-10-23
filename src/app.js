@@ -26,6 +26,11 @@ app.set("view engine","hbs");
 app.set("views",template_path);
 hbs.registerPartials(partialfile_path);
 
+app.get("/database",async(req,res)=>{
+    const result=await register.find();
+    res.render("database")
+})
+
 //index page
 app.get("/",(req,res) => {
     res.render("index");
@@ -35,12 +40,17 @@ app.get("/",(req,res) => {
 app.get("/login",(req,res) => {
     res.render("login");
 });
+app.get("/database",(req,res)=>{
+    res.render("database");
+})
 
 //registration page
 app.get("/registration",(req,res)=>{
     res.render("registration");
 })
-
+app.get("/userdashboard",(req,res)=>{
+    res.render("userdashboard");
+})
 //send data from signup page to another page // registration
 app.post("/registration",async (req,res)=>{
     try{
@@ -61,6 +71,8 @@ app.post("/registration",async (req,res)=>{
                 confirmpassword:cpass,
                 Description:des
             });
+
+            //middle ware  convert pass into hashcode
             
         const result=await data.save();
        res.status(201).render("index"); 
@@ -80,14 +92,18 @@ app.post("/login",async (req,res)=>{
         const demail=req.body.email;
         const pass=req.body.password;
         const result=await register.findOne({email:demail});
-        if(result.password===pass){
-            res.render("index");
+        
+        const isMatch=await bcrypt.compare(pass,result.password);
+                
+        if(isMatch){
+            res.status(201).render("login");
         }else{
             res.send("Invalid Password");
         }
         console.log(result);
 
     }catch(err){
+        res.status(404).send("not found");
         
     }
 

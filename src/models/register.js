@@ -1,10 +1,10 @@
 const mongoose=require("mongoose");
 const { default: isEmail } = require("validator/lib/isemail");
-
+const bcrypt=require("bcryptjs");
 
 //define document structure
 
-const employeeschema=new mongoose.Schema({
+const employeeschema=new mongoose.Schema({ 
     name:{
         type:String,
         required:true,
@@ -32,6 +32,19 @@ const employeeschema=new mongoose.Schema({
     },
     
 });
+//convert the password into hashcode before storre into the database
+
+employeeschema.pre("save",async function(next){
+        //check if the password is modify first time or only the password field is modified
+        if(this.isModified("password")){
+            console.log(`before covert original password is ${this.password}`);
+            this.password=await bcrypt.hash(this.password,10); //convert it into hash code
+            console.log(`before covert original password is ${this.password}`);
+            thius.confirmpassword=undefined;
+        }
+
+});
+
 
 const register=new mongoose.model("register",employeeschema);
 
