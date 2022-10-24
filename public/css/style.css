@@ -1,121 +1,99 @@
 *{
-  margin: 0;
-  padding: 0;
-  font-family: 'Cormorant SC', serif;
-
-}
-body{
-  background-color:  #e2e2e2!important;
-  overflow: hidden;
-}
-
-.banner{
-	width:100%;
-	height: 100vh;
-	background: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7 )), url(../images/HomeImg.jpg);
-	color:white;
-	background-size:cover;
-	background-position: center;
-}
-
- 
-
-.divider:after,
-.divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
-}
-.h-custom {
-height: calc(100% - 73px);
-}
-@media (max-width: 450px) {
-.h-custom {
-height: 100%;
-}
-}
-
-.logo{
-	margin-left: 20px;
-	margin-right: 10px;
-}
-.imgcon{
-	margin-left: 20px;
-}
-
-@media only screen and (max-width:600px) {
-	.sidebar{
-		display:none;
-		width: 100% !important;
-		background: white;
-		height: 100vh;
-		position: fixed;
-		padding-top: 20px;
-	}
-	
-	.content{
-		margin-left: 0%!important;
-	}	
-}
-
-.sidebar{
-	width: 18%;
-	background: white;
-	height: 100%;
-	position: fixed;
-	padding-top: 45px;
-}
-.sidebar a{
-	display: block;
-	width: 100%;
-	padding: 10px 25px;
-	text-decoration: none;
-	color: gray;
-}
-.sidebar a:hover{
-	background:#e2e2e2;
-}
-
-.sidebar .divider{
-	height: .5px;
-	width: 100%;
-	background: #e2e2e2;
-}
-.content{
-	margin-left: 20%;
-	font-size: 30px;
-	cursor: pointer;
-}
-.sidebar .crossbtn{
-	position: absolute;
-	top:0;
-	right: 35px;
-	font-size: 40px;
-	cursor: pointer;
-}
-
-/* table   */
-#customers {
-	font-family: Arial, Helvetica, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: 'Cormorant SC', serif;
+  
+  }
+  body{
+	background-color:  #e2e2e2!important;
+	overflow: hidden;
   }
   
-  #customers td, #customers th {
-	border: 1px solid #ddd;
-	padding: 8px;
+  .banner{
+	  width:100%;
+	  height: 100vh;
+	  background: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7 )), url(../images/HomeImg.jpg);
+	  color:white;
+	  background-size:cover;
+	  background-position: center;
   }
   
-  #customers tr:nth-child(even){background-color: #f2f2f2;}
+   
   
-  #customers tr:hover {background-color: #ddd;}
+  .divider:after,
+  .divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+  }
+  .h-custom {
+  height: calc(100% - 73px);
+  }
+  @media (max-width: 450px) {
+  .h-custom {
+  height: 100%;
+  }
+  }
   
-  #customers th {
-	padding-top: 12px;
-	padding-bottom: 12px;
-	text-align: left;
-	background-color: #04AA6D;
-	color: white;
+  .logo{
+	  margin-left: 20px;
+	  margin-right: 10px;
+  }
+  .imgcon{
+	  margin-left: 20px;
+  }
+  
+  @media only screen and (max-width:600px) {
+	  .sidebar{
+		  display:none;
+		  width: 100% !important;
+		  background: white;
+		  height: 100vh;
+		  position: fixed;
+		  padding-top: 20px;
+	  }
+	  
+	  .content{
+		  margin-left: 0%!important;
+	  }	
+  }
+  
+  .sidebar{
+	  width: 18%;
+	  background: white;
+	  height: 100%;
+	  position: fixed;
+	  padding-top: 45px;
+	 
+  }
+  .sidebar a{
+	  display: block;
+	  width: 100%;
+	  padding: 10px 25px;
+	  text-decoration: none;
+	  color: gray;
+  }
+  .sidebar a:hover{
+	  background:#e2e2e2;
+  }
+  
+  .sidebar .divider{
+	  height: .5px;
+	  width: 100%;
+	  background: #e2e2e2;
+  }
+  .content{
+	  margin-left: 20%;
+	  font-size: 30px;
+	  cursor: pointer;
+	 
+  }
+  .sidebar .crossbtn{
+	  position: absolute;
+	  top:0;
+	  right: 35px;
+	  font-size: 40px;
+	  cursor: pointer;
   }
   

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    {{>navbar}}
+    {{>sidebar}}
+    
+   <div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-4">
+					<div class="my-card mt-4" >
+					<!--- alert -->
+													
+							<!-- icon registration -->
+							<div class="container text-center mb-4">
+							<img class="" style="width: 60px;" src="" src="" alt="" />
+							 <h1 class="text-center mt-2 ">ADD CONTACT</h1>
+							</div>
+						
+						<form  action="/registration" method="post" >
+							<!--name field -->
+							<div class="mb-3">
+							      <input type="text" name="name" class="form-control "  id="name_field" value="" aria-describedby="namehelp" placeholder=" Name" required>
+								 	
+							 </div>
+							 <!--email field -->
+							 <div class="mb-3">
+							    <input type="email" name="email" class="form-control" id="email _ field" aria-describedby="emailHelp" value="" placeholder="Email" required>
+							 </div>
+							 <!--password field -->
+							 <div class="mb-3">
+							    <input type="number" name="phone" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="phone number" required>
+							 </div>
+			
+							 <!--textarea field -->
+							 <div class="mb-3">
+								<textarea placeholder="address" name="address" rows="5" text="" class="form-control"></textarea>
+							 </div>
+							
+							 <!--  submit buttom--> <!--  reset buttom-->
+							 <div class="container text-center pt-2 ">
+							 	<button class="btn btn-success " type="submit">Submit</button>
+							 	<button class="btn btn-danger text-white" type="reset" >Reset</button>
+							 </div>
+							 
+							 
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

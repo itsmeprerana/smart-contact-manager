@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const success = () => {
+            alert("data update you will redirect to ");
+        }
+    </script>
+</head>
+<body >
+    {{>navbar}}
+    {{>sidebar}}
+    
+   <div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-4">
+					<div class="my-card mt-4" >
+					<!--- alert -->
+													
+							<!-- icon registration -->
+							<div class="container text-center mb-4">
+							<img class="" style="width: 60px;" src="" src="" alt="" />
+							 <h1 class="text-center mt-2 ">update CONTACT</h1>
+							</div>
+						
+						<form  action="/database" method="get" >
+
+							<!--name field -->
+							<div class="mb-3">
+							      <input type="text" name="name" class="form-control "  id="name_field" value="{{update.name}}" aria-describedby="namehelp" placeholder=" Name" required>
+								 	
+							 </div>
+							 <!--email field -->
+							 <div class="mb-3">
+							    <input type="email" name="email" class="form-control" id="email _ field" aria-describedby="emailHelp" value="{{update.email}}" placeholder="Email" required>
+							 </div>
+							 <!--password field -->
+							 <div class="mb-3">
+							    <input type="text" name="password" value="{{update.password}}" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="phone number" required>
+							 </div>
+								 <!--  submit buttom--> <!--  reset buttom-->
+							 <div class="container text-center pt-2 ">
+							 	<button class="btn btn-success " type="submit" onclick="success()">Submit</button>
+							 	<button class="btn btn-danger text-white" type="reset" >Reset</button>
+							 </div>
+							 
+							 
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

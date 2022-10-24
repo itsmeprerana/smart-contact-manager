@@ -4,31 +4,38 @@ const app = express();
 require("./db/conn");
 const hbs=require("hbs");
 const register=require("./models/register");
-const { json } = require("express");
+const { json, Router } = require("express");
 const bcrypt=require("bcryptjs");
+
+
 
 //work for other port
 const port= process.env.PORT || 3000;
 const static_path=path.join(__dirname,"../public");
 const template_path=path.join(__dirname,"../templates/views");
 const partialfile_path=path.join(__dirname,"../templates/partials");
-// console.log(path.join(__dirname,"../public"));
+
 
 //show data from signup page to another
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 
-app.use(express.static(static_path)); 
+app.use(express.static(static_path));
 
-// static pages 
-app.set("view engine","hbs");
+
 app.set("views",template_path);
+app.set("view engine","hbs");
 hbs.registerPartials(partialfile_path);
 
 app.get("/database",async(req,res)=>{
-    const result=await register.find();
-    res.render("database")
+    try{
+        const result=await register.find();
+        res.render("database",{database:result});
+    }
+    catch(err){
+        console.log("here it is "+err);
+    }
 })
 
 //index page
@@ -40,17 +47,34 @@ app.get("/",(req,res) => {
 app.get("/login",(req,res) => {
     res.render("login");
 });
-app.get("/database",(req,res)=>{
-    res.render("database");
+
+app.get("/addData",(req,res)=>{
+    res.render("addData");
 })
 
 //registration page
 app.get("/registration",(req,res)=>{
     res.render("registration");
 })
-app.get("/userdashboard",(req,res)=>{
-    res.render("userdashboard");
+
+app.get("/database/:id",async = (req,res)=>{
+    try{
+
+        const result=register.findByIdAndRemove(req.params.id,(err,doc)=>{
+            if(!err){
+               res.render("database");
+            }
+            else{
+                res.send(err);
+            }
+        });
+       
+
+    }catch(err){
+        res.status(400).send("can't delete "+err);
+    }
 })
+
 //send data from signup page to another page // registration
 app.post("/registration",async (req,res)=>{
     try{
@@ -60,9 +84,10 @@ app.post("/registration",async (req,res)=>{
         const dname=req.body.name;
         const demail=req.body.email;
         const des=req.body.Description;
+        
 
-        console.log(bcrypt.hash(pass,10));
-
+        //console.log(bcrypt.hash(pass,10));
+        
         if(pass===cpass){
             const data=new register({
                 name:dname,
@@ -71,20 +96,28 @@ app.post("/registration",async (req,res)=>{
                 confirmpassword:cpass,
                 Description:des
             });
-
-            //middle ware  convert pass into hashcode
             
-        const result=await data.save();
-       res.status(201).render("index"); 
+            const result=await data.save();
+            res.status(201).render("index"); 
 
         }else{
             res.send("passwrod inccorect")
         }
 
     }catch(err){
-        res.status(404).send("Invalid details");
+        res.status(404).send("Invalid details"+err);
     }
 });
+
+app.get("/:id",async(req,res)=>{
+    try{
+        const result=await register.findById(req.params.id);
+        res.render("update",{update:result});
+    }
+    catch(err){
+        console.log("here it is "+err);
+    }
+})
 
 app.post("/login",async (req,res)=>{
     try{
@@ -93,10 +126,10 @@ app.post("/login",async (req,res)=>{
         const pass=req.body.password;
         const result=await register.findOne({email:demail});
         
-        const isMatch=await bcrypt.compare(pass,result.password);
-                
-        if(isMatch){
-            res.status(201).render("login");
+       // const isMatch=await bcrypt.compare(pass,result.password);
+        
+        if(result.password=pass){
+            res.status(201).render("userdashboard");
         }else{
             res.send("Invalid Password");
         }
@@ -112,4 +145,4 @@ app.post("/login",async (req,res)=>{
 app.listen(port,()=>{
     console.log(`server is running port no ${port}`);
 
-})
+});

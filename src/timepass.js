@@ -1,13 +1,11 @@
 
-
-const bcrypt=require("bcryptjs");
-
-
-const securePass = async(pass)=>{
-
-    const passhash=await bcrypt.hash(pass,10);
-    console.log(passhash);
-
-}
-
-securePass("prerana");
+const togglebar = () => {
+    console.log("this script")
+    if($(".sidebar").is(":visible") ){
+        $(".sidebar").css("display","none");
+        $(".content").css("margin-left","0%");
+    }else{
+        $(".sidebar").css("display","block");
+        $(".content").css("margin-left","20%");
+    }
+};
