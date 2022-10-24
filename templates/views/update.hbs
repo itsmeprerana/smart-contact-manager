@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
-    <script>
-        const success = () => {
-            alert("data update you will redirect to ");
-        }
-    </script>
+   
 </head>
 <body >
     {{>navbar}}
@@ -27,8 +24,8 @@
 							 <h1 class="text-center mt-2 ">update CONTACT</h1>
 							</div>
 						
-						<form  action="/database" method="get" >
-
+						<form  action="/update" method="post" >
+							<input type="hidden" name="oid" id="oid" value="{{update._id}}">
 							<!--name field -->
 							<div class="mb-3">
 							      <input type="text" name="name" class="form-control "  id="name_field" value="{{update.name}}" aria-describedby="namehelp" placeholder=" Name" required>
@@ -40,15 +37,19 @@
 							 </div>
 							 <!--password field -->
 							 <div class="mb-3">
-							    <input type="text" name="password" value="{{update.password}}" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="phone number" required>
+							    <input type="text" name="phone" value="{{update.phone}}" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="phone number" required>
 							 </div>
-								 <!--  submit buttom--> <!--  reset buttom-->
+							 <!--address field -->
+							 <div class="mb-3">
+							    <input type="text" name="address" value="{{update.address}}" class="form-control" id="address" aria-describedby="phoneHelp" placeholder="address" required>
+							 </div>
+							 <!--  submit buttom--> 
 							 <div class="container text-center pt-2 ">
-							 	<button class="btn btn-success " type="submit" onclick="success()">Submit</button>
-							 	<button class="btn btn-danger text-white" type="reset" >Reset</button>
-							 </div>
+							 	<button class="btn btn-success " type="submit" onclick="return confirm('want to update the record')">Submit</button>
+							<!-- 	<button class="btn btn-danger text-white" type="reset" >Reset</button> -->
+							 </div>				 
 							 
-							 
+
 						</form>
 					</div>
 				</div>

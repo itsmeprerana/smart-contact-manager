@@ -4,8 +4,10 @@ const app = express();
 require("./db/conn");
 const hbs=require("hbs");
 const register=require("./models/register");
+const contact=require("./models/contact");
 const { json, Router } = require("express");
 const bcrypt=require("bcryptjs");
+const { get } = require("http");
 
 
 
@@ -28,9 +30,11 @@ app.set("views",template_path);
 app.set("view engine","hbs");
 hbs.registerPartials(partialfile_path);
 
+
+// show contact details on website
 app.get("/database",async(req,res)=>{
     try{
-        const result=await register.find();
+        const result=await contact.find();
         res.render("database",{database:result});
     }
     catch(err){
@@ -50,19 +54,70 @@ app.get("/login",(req,res) => {
 
 app.get("/addData",(req,res)=>{
     res.render("addData");
+});
+
+app.get("/:email",async(req,res)=>{
+
+   const result=await contact.findOne({email:req.params.email});
+   res.render("update",{update:result});
+    
+    
 })
+app.post("/update",async(req,res)=>{
+
+    try{
+      
+            const nname=req.body.name;
+            const nemail=req.body.email;
+            const nphone=req.body.phone;
+            const nadd=req.body.address;
+    
+        
+            const result=await contact.updateOne({_id:req.body.oid},
+                                            {$set:{name:nname,email:nemail,phone:nphone,address:nadd}});
+            res.redirect("database");
+        }catch(er){
+            res.send(er);
+        }
+});
+//add new contact in the contact list
+app.post("/addData",async(req,res)=>{
+    try{
+        
+        const id=req.body.id;
+        const name=req.body.name;
+        const email=req.body.email;
+        const phone=req.body.phone;
+        const add=req.body.address;
+        
+
+        //console.log(bcrypt.hash(pass,10));
+        const data=new contact({
+                id:id,
+                name:name,
+                email:email,
+                phone:phone,
+                address:add,               
+        });
+            
+            const result=await data.save();
+            res.status(201).redirect("database"); 
+    }catch(err){
+        res.status(404).send("Invalid details"+err);
+    }
+});
 
 //registration page
 app.get("/registration",(req,res)=>{
     res.render("registration");
 })
 
-app.get("/database/:id",async = (req,res)=>{
+app.get("/:id",async(req,res)=>{
     try{
 
-        const result=register.findByIdAndRemove(req.params.id,(err,doc)=>{
+        const result=contact.findByIdAndRemove(req.params.id,(err,doc)=>{
             if(!err){
-               res.render("database");
+               res.redirect("database");
             }
             else{
                 res.send(err);
@@ -73,7 +128,7 @@ app.get("/database/:id",async = (req,res)=>{
     }catch(err){
         res.status(400).send("can't delete "+err);
     }
-})
+}) 
 
 //send data from signup page to another page // registration
 app.post("/registration",async (req,res)=>{
@@ -109,16 +164,6 @@ app.post("/registration",async (req,res)=>{
     }
 });
 
-app.get("/:id",async(req,res)=>{
-    try{
-        const result=await register.findById(req.params.id);
-        res.render("update",{update:result});
-    }
-    catch(err){
-        console.log("here it is "+err);
-    }
-})
-
 app.post("/login",async (req,res)=>{
     try{
         
@@ -133,7 +178,7 @@ app.post("/login",async (req,res)=>{
         }else{
             res.send("Invalid Password");
         }
-        console.log(result);
+        //console.log(result);
 
     }catch(err){
         res.status(404).send("not found");

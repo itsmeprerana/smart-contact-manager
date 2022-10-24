@@ -4,7 +4,7 @@ const { default: isEmail } = require("validator/lib/isemail");
 
 //define document structure
 
-const employeeschema=new mongoose.Schema({
+const userschema=new mongoose.Schema({
     name:{
         type:String,
         required:true,
@@ -45,6 +45,6 @@ employeeschema.pre("save",async function(next){
 });
 */
 
-const register=new mongoose.model("register",employeeschema);
+const register=new mongoose.model("register",userschema);
 
 module.exports=register;

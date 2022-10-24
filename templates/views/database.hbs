@@ -14,12 +14,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="css/index.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script>
+<!--<script>
          const update = () => {
             alert("record updated"+);
         };
         
-</script>
+</script> -->
 </head>
 
 <body>
@@ -36,20 +36,20 @@
                     <tr>
                       <th scope="col">name</th>
                       <th scope="col">email</th>
-                      <th scope="col">password</th>
-                        <th scope="col">password</th>
-                      <th scope="col">Action</th>
+                        <th scope="col">phone</th>
+                      <th scope="col">address</th>
+                      <th scope="col">action</th>
                     </tr>
                   </thead>
                 <tbody id="mytable">
                     {{#each database}}
-                      <tr>
+                    <tr>
                         <td>{{ this.name }}</td>
                         <td>{{ this.email }}</td>
-                        <td>982737398</td>
-                        <td>{{this.password}}</td>
-                        <td><a href="/{{this.id}}" ><i class="fa-solid fa-pencil" ></i></a>
-                        <a href="/database/{{this.id}}"><i class="fa-solid fa-trash" onclick="return confirm('want to delte the record')" ></i></a></td>
+                        <td>{{ this.phone }}</td>
+                        <td>{{this.address}}</td>
+                        <td> <a href="/{{this.email}}"><i class="fa-solid fa-pencil"></i></a>
+                        <a href="/{{this._id}}"><i class="fa-solid fa-trash" onclick="return confirm('want to delte the record')" ></i></a></td>
                     </tr>
                     {{/each}}
                   </tbody>
