@@ -55,6 +55,14 @@ app.get("/login",(req,res) => {
 app.get("/addData",(req,res)=>{
     res.render("addData");
 });
+//registration page
+app.get("/registration",(req,res)=>{
+    res.render("registration");
+})
+
+app.get("/about",(req,res)=>{
+    res.render("about");
+});
 
 app.get("/:email",async(req,res)=>{
 
@@ -107,21 +115,11 @@ app.post("/addData",async(req,res)=>{
     }
 });
 
-//registration page
-app.get("/registration",(req,res)=>{
-    res.render("registration");
-})
-
-app.get("/:id",async(req,res)=>{
+app.get("/:id/0",async(req,res)=>{
     try{
 
         const result=contact.findByIdAndRemove(req.params.id,(err,doc)=>{
-            if(!err){
-               res.redirect("database");
-            }
-            else{
-                res.send(err);
-            }
+            res.redirect('back');
         });
        
 
